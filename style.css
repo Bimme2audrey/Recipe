@@ -1,0 +1,313 @@
+
+	@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400;500;600&display=swap');
+  
+.h1{
+
+  text-align: center;
+  color: #31bfb1;
+
+}
+body {
+  font-family: 'Playpen Sans', cursive;
+  background-image: url("https://images.unsplash.com/photo-1599230396418-09e63394e3b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJ1aXQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Custom styles for sticky navbar */
+.navbar.sticky-top {
+  background-color: #D1913C; /* Navbar background color */
+  color: #31bfb1; /* Text color */
+  padding: 10px 0; /* Padding top and bottom */
+  z-index: 1000; /* Ensure navbar stays on top of other content */
+}
+
+.navbar.sticky-top .navbar-brand,
+.navbar.sticky-top .navbar-nav .nav-link {
+  color: #31bfb1; /* Color of brand and nav links */
+}
+
+.form-control {
+  box-shadow: none;		
+  font-weight: normal;
+  font-size: 13px;
+}
+.form-control:focus {
+  border-color: #33cabb;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+
+
+/*card*/
+
+.container_3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 900px;
+  margin-block: 2rem;
+  gap: 2rem;
+}
+
+.card_image {
+  max-width:100%;
+  height: auto;
+  display: flex;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: clamp(20rem, calc(20rem + 2vw), 22rem);
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  background: #ECE9E6;
+background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+
+}
+
+
+
+.card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+
+.tag {
+  align-self: flex-start;
+  padding: .25em .75em;
+  border-radius: 1em;
+  font-size: .75rem;
+}
+
+.tag + .tag {
+  margin-left: .5em;
+}
+
+.tag-blue {
+  background: #56CCF2;
+background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+  color: #fafafa;
+}
+
+.tag-brown {
+  background: #D1913C;
+background: linear-gradient(to bottom, #FFD194, #D1913C);
+  color: #fafafa;
+}
+
+.tag-red {
+  background: #cb2d3e;
+background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+  color: #fafafa;
+}
+
+.card__body h4 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.search-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 9fr 3fr;
+  gap: 1.2em;
+}
+.search-container input {
+  font-size: 1em;
+  padding: 0.6em;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #202030;
+}
+.search-container button {
+  font-size: 1em;
+  background-color: #f4c531;
+  border: none;
+  font-weight: 600;
+  border-radius: 0.3em;
+}
+
+#show-recipe {
+  font-size: 1em;
+  position: relative;
+  left: 75%;
+  padding: 0.9em 0.6em;
+  background-color: #f4c531;
+  border: none;
+  top: 1.5em;
+  border-radius: 0.3em;
+  font-weight: 600;
+}
+#recipe {
+  position: absolute;
+  background-color: #ffffff;
+  min-height: 50%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-radius: 0.6em;
+  display: none;
+}
+#recipe pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 2.5em 1.2em 1.2em 1.2em;
+  font-size: 0.92em;
+  color: #303040;
+}
+#hide-recipe {
+  font-size: 1em;
+  position: relative;
+  width: 1.8em;
+  height: 1.8em;
+  background-color: #f4c531;
+  border: none;
+  top: 1.2em;
+  left: 90%;
+  border-radius: 0.3em;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 1.8em;
+  color: #202030;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    font-size: 14px;
+  }
+}
+
+/*my two column*/
+ /* Basic styling for the two-column layout */
+ .container_1 {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: rgba(11, 12, 26, 0.08) 0px 8px 8px 0;
+  background-color: whitesmoke;
+  
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+.col {
+  flex: 0 0 50%; /* Each column takes up 50% of the container width */
+  padding: 0 15px;
+}
+
+/* Example styles for each column */
+.col {
+  background-color: #33cabb;
+  padding: 20px;
+  border: 1px solid white;
+ 
+}
+ /* Image styles */
+
+
+/* Responsive styles using media queries */
+@media screen and (max-width: 600px) {
+  .col {
+    flex: 0 0 100%; /* Each column takes up 100% of the container width on smaller screens */
+    margin-bottom: 20px; /* Add some space between columns */
+  }
+  
+}
+.nn{
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+ 
+}
+.mm{
+  margin-top: 10%;
+}
+
+.browse{
+
+  border-radius: 25px;
+  border: 1px solid #f4c531;
+  background: #f4c531;
+  color: #fff;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto;
+  line-height: 22px;
+  padding: 16px 24px;
+  text-decoration: none;
+  transition: all 200ms ease;
+  box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+
+}
+/*abt*/
+ /*  */
+ .container {
+  max-width:100%;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+.about-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+.about-section h2 {
+  color: #333;
+}
+
+.about-section p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/*footer*/
+.footer {
+  background-color:#333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+.foot{
+  text-decoration: none;
+  color: #ECE9E6;
+}
+.foot:hover{
+  color: #ECE9E6;
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px;
+  }
+}
+
+.about_us{
+  margin: auto;
+  width: 50%;
+  padding: 3px;
+}
+
+@media screen and (max-width: 600px) {
+  .about_us{
+    width: 100%;
+  }
+}

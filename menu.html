@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bimme's project</title>
+<meta name="description" content="Recipe Search. Online recipe app. Bimme Audrey">
+<meta name="keywords" content="Recipe, Meals, Food, easy recipes, pastries, easy food, learn a new recipe, cakes">
+<meta name="author" content="Bimme Audrey|| Bimme">
+
+<link rel="shortcut icon" href="./images/fav.png" type="image/x-icon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+          }
+          
+          header {
+            background: #33cabb;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+          }
+          
+          h1 {
+            margin: 0;
+            font-size: 36px;
+          }
+          
+          .container {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px;
+          }
+          
+          .recipe-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+          
+          .recipe-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+          }
+          
+          .recipe-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+          }
+          
+          .recipe-item h2 {
+            margin: 0;
+            font-size: 20px;
+            padding: 10px;
+            min-width: 200px;
+          }
+          
+          .recipe-item p {
+            margin: 0;
+            padding: 10px;
+            color: #777;
+          }
+          
+          .recipe-item a {
+            background: #f4c534;
+            color: #fff;
+            min-width: 150px;
+            padding: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: background 0.3s ease;
+          }
+          
+          .recipe-item a:hover {
+            background:#ffa500;
+          }
+          
+          @media screen and (max-width: 768px) {
+            .container {
+              max-width: 90%;
+            }
+            .recipe-item {
+              flex-direction: column;
+            }
+          
+            .recipe-item img {
+              width: 100%;
+              height: auto;
+              margin-bottom: 10px;
+            }
+          
+            .recipe-item h2 {
+              font-size: 20px;
+              padding: 0;
+              margin-bottom: 10px;
+            }
+          
+            .recipe-item p {
+              font-size: 14px;
+              margin-bottom: 10px;
+            }
+          
+            .recipe-item a {
+              width: 100%;
+              text-align: center;
+            }
+          }
+    </style>
+  </head>
+  <body>
+
+	<!--nav-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+		<div class="container">
+		  <a class="navbar-brand" href="./index.html">Qu<sub>Z</sub>iN🍨</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item ">
+				<a class="nav-link" href="./index.html">Home </a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="./recipe.html">Recipes</a>
+			  </li>
+			  <li class="nav-item active">
+				<a class="nav-link" href="./menu.html">Menus <span class="sr-only">(current)</span></a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </nav> <br><br>
+	<!--nav end-->
+
+
+    <header>
+      <h1>MENU🍹</h1>
+    </header>
+    <div class="container">
+      <ul id="recipe-list" class="recipe-list">
+      </ul>
+    </div>
+
+    
+    <script>
+        const API_KEY = "92f0263949a74da9877e2fb48b92fbf9";
+const recipeListEl = document.getElementById("recipe-list");
+
+function displayRecipes(recipes) {
+  recipeListEl.innerHTML = "";
+  recipes.forEach((recipe) => {
+    const recipeItemEl = document.createElement("li");
+    recipeItemEl.classList.add("recipe-item");
+    recipeImageEl = document.createElement("img");
+    recipeImageEl.src = recipe.image;
+    recipeImageEl.alt = "recipe image";
+
+    recipeTitleEl = document.createElement("h2");
+    recipeTitleEl.innerText = recipe.title;
+
+    recipeIngredientsEl = document.createElement("p");
+    recipeIngredientsEl.innerHTML = `
+        <strong>Ingredients:</strong> ${recipe.extendedIngredients
+          .map((ingredient) => ingredient.original)
+          .join(", ")}
+    `;
+
+    recipeLinkEl = document.createElement("a");
+    recipeLinkEl.href = recipe.sourceUrl;
+    recipeLinkEl.innerText = "View Recipe";
+
+    recipeItemEl.appendChild(recipeImageEl);
+    recipeItemEl.appendChild(recipeTitleEl);
+    recipeItemEl.appendChild(recipeIngredientsEl);
+    recipeItemEl.appendChild(recipeLinkEl);
+    recipeListEl.appendChild(recipeItemEl);
+  });
+}
+
+async function getRecipes() {
+  const response = await fetch(
+    `https://api.spoonacular.com/recipes/random?number=6&apiKey=${API_KEY}`
+  );
+
+  const data = await response.json();
+
+  return data.recipes;
+}
+
+async function init() {
+  const recipes = await getRecipes();
+  displayRecipes(recipes);
+}
+
+init();
+    </script>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  </body>
+</html>

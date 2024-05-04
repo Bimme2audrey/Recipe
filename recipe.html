@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bimme's project</title>
+<meta name="description" content="Recipe Search. Online recipe app. Bimme Audrey">
+<meta name="keywords" content="Recipe, Meals, Food, easy recipes, pastries, easy food, learn a new recipe, cakes">
+<meta name="author" content="Bimme Audrey|| Bimme">
+
+<link rel="shortcut icon" href="./images/fav.png" type="image/x-icon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    
+    /* Add your CSS styles here */
+      /* Styles for the search form */
+  #search-form{
+    margin-bottom: 20px;
+  }
+  
+  #search-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"]{
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #f4c534;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #ffa500;
+  }
+  
+  /* Styles for recipe items */
+  .recipe-item {
+    display: flex; 
+    align-items: center;
+     justify-content: space-between;
+     margin-bottom: 20px; 
+     border-radius: 20px; 
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+     overflow: hidden; 
+    background-color:honeydew;
+  }
+  
+  .recipe-item img {
+   height: auto;
+  margin-bottom: 10px;
+    max-width: 100%; 
+    border-radius: 50%;
+}
+  
+  .recipe-item h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-item a {
+    border-radius: 10px;
+    border: 1px solid #f4c531;
+    background: #f4c531;
+    color: black;
+    text-decoration: none;
+    box-shadow: rgba(37, 39, 89, 0.08) 0px 8px 8px 0;
+  }
+  
+  .recipe-item a:hover {
+
+    background: #f4c532;
+  }
+  .one{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    background-color: #33cabb;
+    box-shadow: rgba(229, 210, 7, 0.08) 0px 8px 8px 0;
+
+
+  }
+  </style>
+</head>
+<body>
+
+	<!--nav-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+		<div class="container">
+		  <a class="navbar-brand" href="./index.html">Qu<sub>Z</sub>iN🍨</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+			  <li class="nav-item">
+				<a class="nav-link" href="./index.html">Home </a>
+			  </li>
+			  <li class="nav-item active">
+				<a class="nav-link" href="./recipe.html">Recipes <span class="sr-only">(current)</span></a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="./menu.html">Menus</a>
+			  </li>
+			</ul>
+		  </div>
+		</div>
+	  </nav> <br><br>
+	<!--nav end-->
+  
+  <div class="one">
+
+
+  <form id="search-form">
+    <input type="text" id="search-input" placeholder="Search for recipes...">
+    <button type="submit">Search</button>
+  </form></div>
+
+  <div id="recipe-list">
+    <!-- Recipes will be displayed here -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('search-form');
+      const input = document.getElementById('search-input');
+      const recipeList = document.getElementById('recipe-list');
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const searchQuery = input.value.trim();
+        if (!searchQuery) {
+          return;
+        }
+
+        const YOUR_APP_ID = 'ff00b9c3';
+        const YOUR_APP_KEY = 'f350a4f7aad314915b374862bf630f9b';
+        const apiUrl = `https://api.edamam.com/search?q=${searchQuery}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`;
+
+        try {
+          const response = await fetch(apiUrl);
+          const data = await response.json();
+
+          // Clear previous results
+          recipeList.innerHTML = '';
+
+          // Display recipes
+          data.hits.forEach(hit => {
+            const recipe = hit.recipe;
+            const recipeItem = document.createElement('div');
+            recipeItem.classList.add('recipe-item');
+
+            const recipeTitle = document.createElement('h2');
+            recipeTitle.textContent = recipe.label;
+
+            const recipeImage = document.createElement('img');
+            recipeImage.src = recipe.image;
+            recipeImage.alt = recipe.label;
+
+            const recipeLink = document.createElement('a');
+            recipeLink.href = recipe.url;
+            recipeLink.textContent = 'View Recipe';
+
+            recipeItem.appendChild(recipeTitle);
+            recipeItem.appendChild(recipeImage);
+            recipeItem.appendChild(recipeLink);
+
+            recipeList.appendChild(recipeItem);
+          });
+        } catch (error) {
+          console.error('Error fetching recipes:', error);
+        }
+      });
+    });
+  </script>
+
+  
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
